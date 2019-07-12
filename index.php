@@ -1,3 +1,4 @@
+<?php require "controles/funciones.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Creative - Start Bootstrap Theme</title>
+  <title>Jennifer Arizmendi | Fotografía</title>
 
   <!-- Font Awesome Icons -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,6 +41,9 @@
             <a class="nav-link js-scroll-trigger" href="#services">Servicios</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Galería</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#contact">Contácto</a>
           </li>
         </ul>
@@ -57,7 +61,7 @@
         </div>
         <div class="col-lg-8 align-self-baseline">
           <p class="text-white-75 font-weight-light mb-5">La calidad es prioridad</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Mi galeria</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#portfolio">Mi galeria</a>
         </div>
       </div>
     </div>
@@ -71,7 +75,7 @@
           <h2 class="text-white mt-0">¡Tenemos lo que necesitas!</h2>
           <hr class="divider light my-4">
           <p class="text-white-50 mb-4"></p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Contacto</a>
+          <a class="btn btn-light btn-xl js-scroll-trigger" href="#contact">Contacto</a>
         </div>
       </div>
     </div>
@@ -84,25 +88,18 @@
         A su servicio</h2>
       <hr class="divider my-4">
       <div class="row">
-        <div class="col-lg-4 col-md-6 text-center">
+        <div class="col-lg-6 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-camera-retro text-primary mb-4"></i>
             <h3 class="h4 mb-2">Fotografía</h3>
-            <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 text-center">
+        <div class="col-lg-6 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
             <h3 class="h4 mb-2">Edición</h3>
-            <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 text-center">
-          <div class="mt-5">
-            <i class="fas fa-4x fa-video text-primary mb-4"></i>
-            <h3 class="h4 mb-2">Video</h3>
-            <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
           </div>
         </div>
         </div>
@@ -114,86 +111,34 @@
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Marzo
-              </div>
-              <div class="project-name">
 
-              </div>
-            </div>
-          </a>
-        </div>
+
+        <?php 
+        $datos = visulizarDatosindex();
+        foreach ($datos as $value): ?>
+             
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/2.1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+          <a class="portfolio-box" href="img/portfolio/fullsize/<?php echo $value['f_ruta'] ?>" oncontextmenu="console.log('restringido ');return false">
+            <img class="img-fluid" src="img/portfolio/fullsize/<?php echo $value['f_ruta'] ?>" alt=""  oncontextmenu="console.log('restringido ');return false">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
+                <?php echo $value['f_nombre_foto'] ?>
               </div>
             </div>
           </a>
         </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/3.1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/4.1.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
-            <div class="portfolio-box-caption">
-              <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
-            <div class="portfolio-box-caption p-3">
-              <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
-              </div>
-            </div>
-          </a>
+        <?php endforeach ?>
+        
+
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-center pt-2">
+          <button class="btn btn-primary btn-lg" id="galeria">Var más de la galería</button>
         </div>
       </div>
     </div>
+
+
   </section>
 
 
@@ -209,14 +154,15 @@
       </div>
       <div class="row">
         <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-          <div>555215697</div>
+          <i class="fab fa-facebook-square fa-3x mb-3 text-muted"></i>
+          <div><a href="https://www.facebook.com/jenn.arizmendifotografia">www.facebook.com/jenn.arizmendifotografia/</a></div>
         </div>
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
           <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto:contact@yourwebsite.com">contacto@dominio.com</a>
+          <a class="d-block" href="mailto:contact@yourwebsite.com">jenn.arizmendifotografia@gmail.com</a>
         </div>
+
       </div>
     </div>
   </section>
@@ -224,7 +170,7 @@
   <!-- Footer -->
   <footer class="bg-light py-5">
     <div class="container">
-      <div class="small text-center text-muted">Copyright &copy; 2019 </div>
+      <div class="small text-center text-muted">Copyright Jennifer Arizmendi Fotografía &copy; 2019 | Desarollado por <a href="https://www.linkedin.com/in/alfredo-ruiz-hernandez-515317152/" target="_blank">Alfredo R.</a></div>
     </div>
   </footer>
 
@@ -238,6 +184,34 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/creative.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+
+
+      $(document).bind('contextmenu', function(event) {
+          return false;
+      });
+
+      
+      $('#galeria').on('click', function(event) {
+        event.preventDefault();
+        
+        window.location.href = 'galeria.php';
+
+      });
+
+
+    });
+
+
+
+      
+
+
+
+
+  </script>
 
 </body>
 
