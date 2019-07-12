@@ -23,6 +23,7 @@
 
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="css/creative.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -90,14 +91,14 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 text-center">
           <div class="mt-5">
-            <i class="fas fa-4x fa-camera-retro text-primary mb-4"></i>
+            <i class="fas fa-4x fa-camera-retro text-dark mb-4"></i>
             <h3 class="h4 mb-2">Fotografía</h3>
 
           </div>
         </div>
         <div class="col-lg-6 col-md-6 text-center">
           <div class="mt-5">
-            <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
+            <i class="fas fa-4x fa-laptop-code text-dark mb-4"></i>
             <h3 class="h4 mb-2">Edición</h3>
 
           </div>
@@ -111,34 +112,86 @@
   <section id="portfolio">
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-
-
-        <?php 
-        $datos = visulizarDatosindex();
-        foreach ($datos as $value): ?>
-             
         <div class="col-lg-4 col-sm-6">
-          <a class="portfolio-box" href="img/portfolio/fullsize/<?php echo $value['f_ruta'] ?>" oncontextmenu="console.log('restringido ');return false">
-            <img class="img-fluid" src="img/portfolio/fullsize/<?php echo $value['f_ruta'] ?>" alt=""  oncontextmenu="console.log('restringido ');return false">
+          <a class="portfolio-box" href="img/1.jpg">
+            <img class="img-fluid" src="img/1.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                <?php echo $value['f_nombre_foto'] ?>
+                Marzo
+              </div>
+              <div class="project-name">
+
               </div>
             </div>
           </a>
         </div>
-        <?php endforeach ?>
-        
-
-      </div>
-      <div class="row">
-        <div class="col-sm-12 text-center pt-2">
-          <button class="btn btn-primary btn-lg" id="galeria">Var más de la galería</button>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/2.jpg">
+            <img class="img-fluid" src="img/2.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Categoria
+              </div>
+              <div class="project-name">
+                Projecto
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/3.jpg">
+            <img class="img-fluid" src="img/3.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Categoria
+              </div>
+              <div class="project-name">
+                Projecto
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/4.jpg">
+            <img class="img-fluid" src="img/4.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Categoria
+              </div>
+              <div class="project-name">
+                Projecto
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/5.jpg">
+            <img class="img-fluid" src="img/5.jpg" alt="">
+            <div class="portfolio-box-caption">
+              <div class="project-category text-white-50">
+                Categoria
+              </div>
+              <div class="project-name">
+                Projecto
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <a class="portfolio-box" href="img/6.jpg">
+            <img class="img-fluid" src="img/6.jpg" alt="">
+            <div class="portfolio-box-caption p-3">
+              <div class="project-category text-white-50">
+                Categoria
+              </div>
+              <div class="project-name">
+                Projecto
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-
-
   </section>
 
 
@@ -155,12 +208,12 @@
       <div class="row">
         <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
           <i class="fab fa-facebook-square fa-3x mb-3 text-muted"></i>
-          <div><a href="https://www.facebook.com/jenn.arizmendifotografia">www.facebook.com/jenn.arizmendifotografia/</a></div>
+          <div><a class = "text-dark"href="https://www.facebook.com/jenn.arizmendifotografia">www.facebook.com/jenn.arizmendifotografia/</a></div>
         </div>
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
           <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mailto:contact@yourwebsite.com">jenn.arizmendifotografia@gmail.com</a>
+          <a class="d-block text-dark" href="mailto:contact@yourwebsite.com">jenn.arizmendifotografia@gmail.com</a>
         </div>
 
       </div>

@@ -5,3 +5,15 @@
     background-attachment: scroll !important;
     background-size: cover !important; 
 }
+.btn-primary {
+    color: #fff;
+    background-color: #343a40 !important;
+    border-color: #212529 !important;
+}
+hr.divider {
+
+    border-color: #212529 !important;
+}
+.bg-primary {
+    background-color: #212529!important;
+}
