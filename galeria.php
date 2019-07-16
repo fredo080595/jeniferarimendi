@@ -1,9 +1,4 @@
 <?php 
-session_start();
-
-if(isset($_SESSION['user'])){
-
- 
 require "controles/funciones.php";
 ?>
 
@@ -117,7 +112,7 @@ require "controles/funciones.php";
         $('#inicio').on('click',  function(event) {
           event.preventDefault();
           
-            window.location.href = "admin.php"
+            window.location.href = "index.php";
         });
 
     });
@@ -126,8 +121,3 @@ require "controles/funciones.php";
 </body>
 
 </html>
-<?php
-} else {
-  header("location:login.php");
-  }
- ?>
