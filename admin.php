@@ -21,6 +21,7 @@ if(isset($_SESSION['user'])){
   <body>
 
     <nav class="navbar navbar-light bg-light justify-content-end">
+        <a class="navbar-brand text-danger" href="galeria.php">Galeria</a>
        <a class="navbar-brand text-danger" href="controles/salir.php">salir</a>
     </nav>
    

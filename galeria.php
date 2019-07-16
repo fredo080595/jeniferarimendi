@@ -1,4 +1,9 @@
-<?php  
+<?php 
+session_start();
+
+if(isset($_SESSION['user'])){
+
+ 
 require "controles/funciones.php";
 ?>
 
@@ -52,31 +57,8 @@ require "controles/funciones.php";
 
 
   <!-- Masthead -->
-  <header class="masthead" style="background: linear-gradient(to bottom,rgba(92,77,66,.8) 0,rgba(92,77,66,.8) 100%),
-  url(img/portfolio/fullsize/<?php
-  $imagen = fotoInicio();
-  echo $imagen[2]; 
-   ?>);
-   background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: scroll !important;
-    background-size: cover !important; 
 
-  ">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="col-lg-10 align-self-end text-center">
-          <img src="img/logo.png" alt="" class="img-fluid">
-          <hr class="divider my-4">
-        </div>
-        <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">La calidad es prioridad</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#portfolio">Mi galeria</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
+ 
 
   <section id="portfolio">
     <div class="container-fluid p-0">
@@ -135,7 +117,7 @@ require "controles/funciones.php";
         $('#inicio').on('click',  function(event) {
           event.preventDefault();
           
-            window.location.href = "index.php"
+            window.location.href = "admin.php"
         });
 
     });
@@ -144,3 +126,8 @@ require "controles/funciones.php";
 </body>
 
 </html>
+<?php
+} else {
+  header("location:login.php");
+  }
+ ?>

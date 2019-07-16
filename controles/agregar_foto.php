@@ -9,4 +9,28 @@ $datos[0] = $_POST['foto'] ?? '';
 $datos[1] = $_FILES;
 
 
-var_dump($datos[1]['foto-img']['name']);
+$archivos = array();
+
+
+for ($i = 0; $i < count($_FILES['foto-img']['name']) ; $i++) {
+	$archivos[$i] = array('name'=>$_FILES['foto-img']['name'][$i],
+						'type'=>$_FILES['foto-img']['type'][$i],
+						'tmp_name'=>$_FILES['foto-img']['tmp_name'][$i],
+						'error'=>$_FILES['foto-img']['error'][$i],
+						'size'=>$_FILES['foto-img']['size'][$i]);
+}
+
+
+
+for ($i = 0; $i <count($archivos) ; $i++) {
+	
+	if (insertaImagen($archivos[$i])) {
+		$respuesta = 1;
+	}else{
+		$respuesta = 0;
+	}
+}
+
+echo $respuesta;
+
+

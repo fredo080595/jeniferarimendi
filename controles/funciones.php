@@ -59,62 +59,41 @@ function eliminarDato($id){
 
 function insertaImagen($datosImagen){
 
+	if (!empty($datosImagen)) {
+		$extension = pathinfo($datosImagen['name'], PATHINFO_EXTENSION);
+		$extension = strtolower($extension);
+		$validextensions = array("jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG");
 
-/*foreach ($datosImagen[1] as $value) {
-	
-	for ($i = 0; $i < count($value['name']) ; $i++) {
-		
-		echo $value['tmp_name'][$i];
+		if (in_array($extension, $validextensions)) {
 
-	}
-
-}*/
-
-	if (!empty($datosImagen[1])) {
-		
-		foreach ($datosImagen[1] as $value) {
-			for ($i = 0; $i < count($value['name']) ; $i++) {
-				
-				$extension = pathinfo($value['name'][$i], PATHINFO_EXTENSION);
-				$extension = strtolower($extension);
-				$validextensions = array("jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG");
-
-				if (in_array($extension, $validextensions)) {
-
-				        $random = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
-				        $nombre_foto = $random . "_" . date("YmdHis") . "." . $extension;
-				        $ruta_destino = "../img/portfolio/fullsize/" . $nombre_foto;
-				        $archivo_movido_ok = move_uploaded_file($value['tmp_name'][$i], $ruta_destino);
+		        $random = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+		        $nombre_foto = $random . "_" . date("YmdHis") . "." . $extension;
+		        $ruta_destino = "../img/portfolio/fullsize/" . $nombre_foto;
+		        $archivo_movido_ok = move_uploaded_file($datosImagen['tmp_name'], $ruta_destino);
 
 
-				        if ($archivo_movido_ok) {
-				        	consultaImg($value['name'][$i],$nombre_foto);
+		        if ($archivo_movido_ok) {
+		        	consultaImg($datosImagen['name'],$nombre_foto);
 
-				            return '1';	
+		            return true;	
 
-				        } else {
-				            return '0';
-				        }
-				    
-				} 
-			}				
-		}		
-
-
-
+		        } else {
+		            return false;
+		        }
+		    
+		} 
 	}else{
-		return 'no se inserto la imagen';
+		return 0;
 	}
-
 
 }
 
 
-function consultaImg($datosImagen,$nombre_foto){
+function consultaImg($datosImagen,$ruta){
 
 
 	$conexion = conexion();
-	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta) values ('$datosImagen','$nombre_foto') ";
+	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta) values ('$datosImagen','$ruta')";
 	$result = mysqli_query($conexion,$sql);
 	if ($result) {
 		return 1;
