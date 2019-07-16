@@ -5,8 +5,8 @@ require "funciones.php";
 
 $datos = array();
 
-$datos[0] = $_POST['foto'];
-$datos[1] = $_FILES['foto-img'];
+$datos[0] = $_POST['foto'] ?? '';
+$datos[1] = $_FILES;
 
 
-echo insertaImagen($datos);
+var_dump($datos[1]['foto-img']['name']);

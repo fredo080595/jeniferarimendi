@@ -117,11 +117,9 @@
             <img class="img-fluid" src="img/1.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Marzo
+                
               </div>
-              <div class="project-name">
 
-              </div>
             </div>
           </a>
         </div>
@@ -130,10 +128,7 @@
             <img class="img-fluid" src="img/2.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
+                
               </div>
             </div>
           </a>
@@ -143,10 +138,6 @@
             <img class="img-fluid" src="img/3.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Categoria
-              </div>
-              <div class="project-name">
-                Projecto
               </div>
             </div>
           </a>
@@ -156,11 +147,9 @@
             <img class="img-fluid" src="img/4.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Categoria
+              
               </div>
-              <div class="project-name">
-                Projecto
-              </div>
+
             </div>
           </a>
         </div>
@@ -169,11 +158,9 @@
             <img class="img-fluid" src="img/5.jpg" alt="">
             <div class="portfolio-box-caption">
               <div class="project-category text-white-50">
-                Categoria
+    
               </div>
-              <div class="project-name">
-                Projecto
-              </div>
+
             </div>
           </a>
         </div>
@@ -182,11 +169,9 @@
             <img class="img-fluid" src="img/6.jpg" alt="">
             <div class="portfolio-box-caption p-3">
               <div class="project-category text-white-50">
-                Categoria
+
               </div>
-              <div class="project-name">
-                Projecto
-              </div>
+
             </div>
           </a>
         </div>

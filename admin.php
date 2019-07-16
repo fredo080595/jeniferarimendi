@@ -72,12 +72,8 @@ if(isset($_SESSION['user'])){
               <form id="formGaleria" enctype="multipart/form-data">                
               <div class="form-row">
                 <div class="form-group col-sm-12">
-                  <label for="">Nombre de la foto</label>
-                  <input type="text" class="form-control" name="foto">
-                </div>
-                <div class="form-group col-sm-12">
                   <label for="exampleFormControlFile1">Example file input</label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto-img">
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="foto-img[]" multiple="multiple">
                 </div> 
               </div>
               </form>

@@ -59,29 +59,49 @@ function eliminarDato($id){
 
 function insertaImagen($datosImagen){
 
+
+/*foreach ($datosImagen[1] as $value) {
+	
+	for ($i = 0; $i < count($value['name']) ; $i++) {
+		
+		echo $value['tmp_name'][$i];
+
+	}
+
+}*/
+
 	if (!empty($datosImagen[1])) {
-		$extension = pathinfo($datosImagen[1]['name'], PATHINFO_EXTENSION);
-		$extension = strtolower($extension);
-		$validextensions = array("jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG");
+		
+		foreach ($datosImagen[1] as $value) {
+			for ($i = 0; $i < count($value['name']) ; $i++) {
+				
+				$extension = pathinfo($value['name'][$i], PATHINFO_EXTENSION);
+				$extension = strtolower($extension);
+				$validextensions = array("jpg", "jpeg", "png", "gif", "PNG", "JPG", "JPEG");
 
-		if (in_array($extension, $validextensions)) {
+				if (in_array($extension, $validextensions)) {
 
-		        $random = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
-		        $nombre_foto = $random . "_" . date("YmdHis") . "." . $extension;
-		        $ruta_destino = "../img/portfolio/fullsize/" . $nombre_foto;
-		        $archivo_movido_ok = move_uploaded_file($datosImagen[1]['tmp_name'], $ruta_destino);
+				        $random = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
+				        $nombre_foto = $random . "_" . date("YmdHis") . "." . $extension;
+				        $ruta_destino = "../img/portfolio/fullsize/" . $nombre_foto;
+				        $archivo_movido_ok = move_uploaded_file($value['tmp_name'][$i], $ruta_destino);
 
 
-		        if ($archivo_movido_ok) {
-		        	consultaImg($datosImagen,$nombre_foto);
+				        if ($archivo_movido_ok) {
+				        	consultaImg($value['name'][$i],$nombre_foto);
 
-		            return '1';	
+				            return '1';	
 
-		        } else {
-		            return '0';
-		        }
-		    
-		} 
+				        } else {
+				            return '0';
+				        }
+				    
+				} 
+			}				
+		}		
+
+
+
 	}else{
 		return 'no se inserto la imagen';
 	}
@@ -92,8 +112,9 @@ function insertaImagen($datosImagen){
 
 function consultaImg($datosImagen,$nombre_foto){
 
+
 	$conexion = conexion();
-	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta) values ('$datosImagen[0]','$nombre_foto') ";
+	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta) values ('$datosImagen','$nombre_foto') ";
 	$result = mysqli_query($conexion,$sql);
 	if ($result) {
 		return 1;
@@ -116,9 +137,8 @@ function comparaImg($id){
 
 function compara_img($id){{
             $elim = comparaImg($id);
-
-            if (isset($elim[1])) {
-                unlink("../img/portfolio/fullsize/" . $elim[1]);
+            if (isset($elim[2])) {
+                unlink("../img/portfolio/fullsize/".$elim[2]);
                 return true;
             } else {
                 return false;
