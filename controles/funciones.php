@@ -4,7 +4,16 @@ require "conexion.php";
 function visulizarDatos(){
 
 	$conexion = conexion();
-	$sql = "SELECT f_id,f_nombre_foto,f_ruta FROM fotos";
+	$sql = "SELECT f_id,f_nombre_foto,f_ruta,id_nombre_galeria FROM fotos";
+	$result = mysqli_query($conexion,$sql);
+	return mysqli_fetch_all($result,MYSQLI_ASSOC);
+
+}
+
+function visulizarDatosGaleria($id_galeria){
+
+	$conexion = conexion();
+	$sql = "SELECT f_id,f_nombre_foto,f_ruta,id_nombre_galeria FROM fotos where id_nombre_galeria = '$id_galeria'";
 	$result = mysqli_query($conexion,$sql);
 	return mysqli_fetch_all($result,MYSQLI_ASSOC);
 
@@ -57,7 +66,7 @@ function eliminarDato($id){
 
 }
 
-function insertaImagen($datosImagen){
+function insertaImagen($datosImagen,$id_random){
 
 	if (!empty($datosImagen)) {
 		$extension = pathinfo($datosImagen['name'], PATHINFO_EXTENSION);
@@ -73,7 +82,7 @@ function insertaImagen($datosImagen){
 
 
 		        if ($archivo_movido_ok) {
-		        	consultaImg($datosImagen['name'],$nombre_foto);
+		        	consultaImg($datosImagen['name'],$nombre_foto,$id_random);
 
 		            return true;	
 
@@ -88,12 +97,10 @@ function insertaImagen($datosImagen){
 
 }
 
-
-function consultaImg($datosImagen,$ruta){
-
+function consultaImg($datosImagen,$ruta,$id_random){
 
 	$conexion = conexion();
-	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta) values ('$datosImagen','$ruta')";
+	$sql = "INSERT INTO fotos(f_nombre_foto,f_ruta,id_nombre_galeria) values ('$datosImagen','$ruta','$id_random')";
 	$result = mysqli_query($conexion,$sql);
 	if ($result) {
 		return 1;
@@ -123,6 +130,35 @@ function compara_img($id){{
                 return false;
             }
         } 
+
+}
+
+function eliminarTodo($dato){
+
+	if ($dato == 1) {
+
+		$files = glob('../img/portfolio/fullsize/*');
+
+		foreach ($files as $file) {
+			if (is_file($file)) {
+				unlink($file);
+			}
+
+		}
+		$conexion = conexion();
+		$sql = 'DELETE FROM fotos';
+		$result = mysqli_query($conexion,$sql);
+
+		if ($result) {
+			return 1;
+		}else{
+			return 0;
+		}
+
+	}else{
+		return 0;
+	}
+
 
 }
 

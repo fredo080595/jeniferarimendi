@@ -8,9 +8,10 @@ $datos = array();
 $datos[0] = $_POST['foto'] ?? '';
 $datos[1] = $_FILES;
 
-
 $archivos = array();
 
+
+$id_rand = substr(str_shuffle("0123456789"), 0, 5);
 
 for ($i = 0; $i < count($_FILES['foto-img']['name']) ; $i++) {
 	$archivos[$i] = array('name'=>$_FILES['foto-img']['name'][$i],
@@ -21,10 +22,9 @@ for ($i = 0; $i < count($_FILES['foto-img']['name']) ; $i++) {
 }
 
 
-
 for ($i = 0; $i <count($archivos) ; $i++) {
 	
-	if (insertaImagen($archivos[$i])) {
+	if (insertaImagen($archivos[$i],$id_rand)) {
 		$respuesta = 1;
 	}else{
 		$respuesta = 0;

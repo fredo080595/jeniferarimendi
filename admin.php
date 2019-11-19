@@ -16,25 +16,29 @@ if(isset($_SESSION['user'])){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" >
 
+
+
     <title>Admin</title>
   </head>
   <body>
 
     <nav class="navbar navbar-light bg-light justify-content-end">
-        <a class="navbar-brand text-danger" href="galeria.php">Galeria</a>
-       <a class="navbar-brand text-danger" href="controles/salir.php">salir</a>
+        <a class="navbar-brand text-danger" href="galeria.php">Galería</a>
+       <a class="navbar-brand text-danger" href="controles/salir.php">Salir</a>
     </nav>
    
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
           <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">agregar imagen</button>
+          <button class="btn btn-danger" id="eliminar-todo">Eliminar todas las fotos</button>
           <table class="table">
             <thead>
 
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre de la imagen</th>
+                <th scope="col">Id de la Galeria</th>
                 <th scope="col">eliminar</th>
               </tr>
 
@@ -47,6 +51,7 @@ if(isset($_SESSION['user'])){
               <tr>
                 <th scope="row"><?php echo $value['f_id'] ?></th>
                 <td><?php echo $value['f_nombre_foto'] ?></td>
+                <td><a target="_blank" href="galeria-cliente.php?id_geleria=<?php echo $value['id_nombre_galeria'] ?>"><?php echo $value['id_nombre_galeria'] ?></a></td>
                 <td><a href="#" onclick="eliminar('<?php echo $value['f_id'] ?>')">eliminar</a></td>
         
               </tr>                 
@@ -95,6 +100,7 @@ if(isset($_SESSION['user'])){
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="js/jquery.js"></script>
+    <script src="js/blockUI.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="js/bootstrap.js" ></script>
   </body>
@@ -107,7 +113,14 @@ if(isset($_SESSION['user'])){
               
                 e.preventDefault();
 
+                $('#exampleModal').modal('hide');
+
+                bloquearPantalla('cargando fotos');
+
+
+
                 let datos = new FormData($('#formGaleria')[0]);
+
 
              $.ajax({
                   url: 'controles/agregar_foto.php',
@@ -119,11 +132,11 @@ if(isset($_SESSION['user'])){
                   cache:false,
                   success: function(r){
                     if (r == 1) {
-                        alert('Agregado con exito');
                         location.reload();
+                        desbloquearPantalla();
                     }else{
-                        alert('Error al agregar');
                         location.reload();
+                        desbloquearPantalla();
                     }
                   }
                 });
@@ -132,6 +145,34 @@ if(isset($_SESSION['user'])){
 
     });
 
+
+
+    $('#eliminar-todo').on('click',  function(event) {
+      event.preventDefault();
+      /* Act on the event */
+
+
+
+      var confirmar = confirm('Esta seguro que desea eliminar todas las fotos');
+      if (confirmar) { 
+        $.ajax({
+          url: 'controles/eliminar_todo.php',
+          type: 'POST',
+          dataType: 'json',
+          data: {param: 1},
+          success:function(r){
+
+            if (r == 1) {
+                alert('se eliminaron todos los archivos con exito');
+                location.reload();
+            }
+
+          }
+        });
+      }
+
+
+    });
 
 
     function eliminar(id){
@@ -154,6 +195,28 @@ if(isset($_SESSION['user'])){
       });
 
 
+    }
+
+
+
+    function bloquearPantalla(texto){
+
+            $.blockUI({
+              message:  (texto == null) ? '' : '<h4 class="text-dark">'+texto+'</h4>'+
+            '<img src="img/fluid-loader.gif" alt="cargando"  width = "200px"/>',
+             css: { 
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#f2f4f5', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+
+                color: '#fff' 
+            } }); 
+    }
+
+    function desbloquearPantalla(){
+      setTimeout($.unblockUI, 10);
     }
 
 

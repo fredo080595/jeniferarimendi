@@ -1,12 +1,9 @@
-<?php 
-session_start();
+<?php  
+require "controles/funciones.php"; 
 
-if(isset($_SESSION['user'])){
+$id_galeria = $_GET['id_geleria'] ?? '';
 
- 
-require "controles/funciones.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,7 +61,7 @@ require "controles/funciones.php";
     <div class="container-fluid p-0">
       <div class="row no-gutters">
         <?php
-        $datos = visulizarDatos(); 
+        $datos = visulizarDatosGaleria($id_galeria); 
         foreach ($datos as $value): ?>
         <div class="col-lg-4 col-sm-6">
           <a class="portfolio-box" href="img/portfolio/fullsize/<?php echo $value['f_ruta'] ?>" >
@@ -120,8 +117,3 @@ require "controles/funciones.php";
 </body>
 
 </html>
-<?php
-} else {
-  header("location:login.php");
-  }
- ?>
